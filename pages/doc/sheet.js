@@ -10,7 +10,7 @@ import Image from "next/image";
 import TextEditor from "../../components/TextEditor";
 
 function Doc() {
-  const { data: session, status } = useSession();
+  const { data, status } = useSession();
   const router = useRouter();
   // const { id } = router.query;
   // const [snapshot, loadingSnapshot] = useDocumentOnce(

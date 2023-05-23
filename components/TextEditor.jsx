@@ -15,35 +15,37 @@ const Editor = dynamic(
 );
 
 const TextEditor = () => {
-  const [session] = useSession();
+  const { data: session } = useSession();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const router = useRouter();
-  const { id } = router.query;
-  const [snapshot] = useDocumentOnce(
-    db.collection("userDocs").doc(session.user.email).collection("docs").doc(id)
-  );
+  // const { id } = router.query;
+  // const [snapshot] = useDocumentOnce(
+  //   db.collection("userDocs").doc(session.user.email).collection("docs").doc(id)
+  // );
 
-  useEffect(()=>{
-    if(snapshot?.data()?.editorState){
-        setEditorState(EditorState.createWithContent(
-            convertFromRaw(snapshot?.data()?.editorState)
-        ))
-    }
-  },[snapshot])
+  // useEffect(() => {
+  //   if (snapshot?.data()?.editorState) {
+  //     setEditorState(
+  //       EditorState.createWithContent(
+  //         convertFromRaw(snapshot?.data()?.editorState)
+  //       )
+  //     );
+  //   }
+  // }, [snapshot]);
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
-    db.collection("userDocs")
-      .doc(session.user.email)
-      .collection("docs")
-      .doc(id)
-      .set(
-        {
-          editorState: convertFromRaw(editorState.getCurrentContent()),
-        },
-        {
-          merge: true,
-        }
-      );
+  //   db.collection("userDocs")
+  //     .doc(session.user.email)
+  //     .collection("docs")
+  //     .doc(id)
+  //     .set(
+  //       {
+  //         editorState: convertFromRaw(editorState.getCurrentContent()),
+  //       },
+  //       {
+  //         merge: true,
+  //       }
+  //     );
   };
   return (
     <div className="bg-[#f8f9fa] min-h-screen pb-16">

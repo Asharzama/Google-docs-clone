@@ -41,12 +41,8 @@ export default function Home() {
     docsCollection.add({
       fileName: input,
     });
-
-    let id;
-
-    snapshot?.docs().map(doc=> id = doc.id)
     
-    router.push(`doc/${id}`)
+    router.push(`doc/sheet`)
 
     setInput("");
     setShowModal(false);
